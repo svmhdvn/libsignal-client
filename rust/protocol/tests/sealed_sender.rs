@@ -66,7 +66,7 @@ fn test_sender_cert() -> Result<(), SignalProtocolError> {
     let expires = 1605722925;
 
     let sender_cert = SenderCertificate::new(
-        Some("9d0652a3-dcc3-4d11-975f-74d61598733f".to_string()),
+        "9d0652a3-dcc3-4d11-975f-74d61598733f".to_string(),
         Some("+14152222222".to_string()),
         key.public_key,
         device_id,
@@ -152,7 +152,7 @@ fn test_sealed_sender() -> Result<(), SignalProtocolError> {
         let expires = 1605722925;
 
         let sender_cert = SenderCertificate::new(
-            Some(alice_uuid.clone()),
+            alice_uuid.clone(),
             Some(alice_e164.clone()),
             alice_pubkey,
             alice_device_id,
@@ -179,7 +179,7 @@ fn test_sealed_sender() -> Result<(), SignalProtocolError> {
             &trust_root.public_key,
             expires - 1,
             Some(bob_e164.clone()),
-            Some(bob_uuid.clone()),
+            bob_uuid.clone(),
             bob_device_id,
             &mut bob_store.identity_store,
             &mut bob_store.session_store,
@@ -190,7 +190,7 @@ fn test_sealed_sender() -> Result<(), SignalProtocolError> {
         .await?;
 
         assert_eq!(bob_ptext.message, alice_ptext);
-        assert_eq!(bob_ptext.sender_uuid, Some(alice_uuid));
+        assert_eq!(bob_ptext.sender_uuid, alice_uuid);
         assert_eq!(bob_ptext.sender_e164, Some(alice_e164));
         assert_eq!(bob_ptext.device_id, alice_device_id);
 
@@ -212,7 +212,7 @@ fn test_sealed_sender() -> Result<(), SignalProtocolError> {
             &trust_root.public_key,
             expires + 11,
             Some(bob_e164.clone()),
-            Some(bob_uuid.clone()),
+            bob_uuid.clone(),
             bob_device_id,
             &mut bob_store.identity_store,
             &mut bob_store.session_store,
@@ -252,7 +252,7 @@ fn test_sealed_sender() -> Result<(), SignalProtocolError> {
             &wrong_trust_root.public_key,
             expires - 1,
             Some(bob_e164.clone()),
-            Some(bob_uuid.clone()),
+            bob_uuid.clone(),
             bob_device_id,
             &mut bob_store.identity_store,
             &mut bob_store.session_store,

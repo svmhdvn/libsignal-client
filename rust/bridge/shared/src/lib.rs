@@ -372,7 +372,7 @@ bridge_deserialize!(SenderCertificate::deserialize);
 bridge_get_bytearray!(get_serialized(SenderCertificate) => SenderCertificate::serialized);
 bridge_get_bytearray!(get_certificate(SenderCertificate) => SenderCertificate::certificate);
 bridge_get_bytearray!(get_signature(SenderCertificate) => SenderCertificate::signature);
-bridge_get_optional_string!(get_sender_uuid(SenderCertificate) => SenderCertificate::sender_uuid);
+bridge_get_string!(get_sender_uuid(SenderCertificate) => SenderCertificate::sender_uuid);
 bridge_get_optional_string!(get_sender_e164(SenderCertificate) => SenderCertificate::sender_e164);
 
 #[bridge_fn]
@@ -386,7 +386,7 @@ fn SenderCertificate_Validate(
 
 #[bridge_fn]
 fn SenderCertificate_New(
-    sender_uuid: Option<String>,
+    sender_uuid: String,
     sender_e164: Option<String>,
     sender_device_id: u32,
     sender_key: &PublicKey,

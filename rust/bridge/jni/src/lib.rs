@@ -1279,22 +1279,6 @@ jni_fn_get_new_boxed_obj!(Java_org_signal_client_internal_Native_SenderCertifica
 jni_fn_get_new_boxed_obj!(Java_org_signal_client_internal_Native_SenderCertificate_1GetServerCertificate(ServerCertificate) from SenderCertificate,
                           |s: &SenderCertificate| Ok(s.signer()?.clone()));
 
-#[no_mangle]
-pub unsafe extern "C" fn Java_org_signal_client_internal_Native_SenderCertificate_1PreferredAddress(
-    env: JNIEnv,
-    _class: JClass,
-    cert: ObjectHandle,
-    session_store: JavaSessionStore,
-) -> ObjectHandle {
-    run_ffi_safe(&env, || {
-        let cert = native_handle_cast::<SenderCertificate>(cert)?;
-        let session_store = JniSessionStore::new(&env, session_store)?;
-
-        let address = expect_ready(cert.preferred_address(&session_store, None))?;
-        box_object::<ProtocolAddress>(Ok(address))
-    })
-}
-
 // UnidentifiedSenderMessageContent
 jni_fn_get_jint!(Java_org_signal_client_internal_Native_UnidentifiedSenderMessageContent_1GetMsgType(UnidentifiedSenderMessageContent) using
                  |m: &UnidentifiedSenderMessageContent| Ok(m.msg_type()? as u32));
