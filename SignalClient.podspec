@@ -1,5 +1,5 @@
 #
-# Copyright 2020 Signal Messenger, LLC.
+# Copyright 2020-2021 Signal Messenger, LLC.
 # SPDX-License-Identifier: AGPL-3.0-only
 #
 
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.swift_version    = '5'
   s.platform = :ios, '10'
 
-  s.dependency 'SignalCoreKit'
+  s.dependency 'CocoaLumberjack/Swift'
 
   s.source_files = ['swift/Sources/**/*.swift', 'swift/Sources/**/*.m']
   s.preserve_paths = [
