@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 
-import SignalFfi
+// import SignalFfi
 
 public class SenderKeyName: ClonableHandleOwner {
     internal override class func destroyNativeHandle(_ handle: OpaquePointer) -> SignalFfiErrorRef? {

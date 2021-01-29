@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 
-import SignalFfi
+// import SignalFfi
 
 #if canImport(CocoaLumberjack)
 import CocoaLumberjack
